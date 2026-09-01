@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Signal — Content Release Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- AUTH SCREEN -->
+<div id="auth-screen" class="auth-screen">
+  <div class="auth-panel">
+    <div class="auth-brand">
+      <span class="auth-brand-mark">◈</span>
+      <span class="auth-brand-name">Signal</span>
+    </div>
+    <p class="auth-brand-sub">The board that keeps Content, Marketing &amp; Sales, and R&amp;D moving on the same release.</p>
+
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-tab="login">Sign in</button>
+      <button class="auth-tab" data-tab="register">Create account</button>
+    </div>
+
+    <form id="login-form" class="auth-form">
+      <label>Email
+        <input type="email" name="email" required autocomplete="email" />
+      </label>
+      <label>Password
+        <input type="password" name="password" required autocomplete="current-password" />
+      </label>
+      <p class="form-error" id="login-error"></p>
+      <button type="submit" class="btn-primary">Sign in</button>
+    </form>
+
+    <form id="register-form" class="auth-form" hidden>
+      <label>Full name
+        <input type="text" name="name" required autocomplete="name" />
+      </label>
+      <label>Work email
+        <input type="email" name="email" required autocomplete="email" />
+      </label>
+      <label>Password
+        <input type="password" name="password" required minlength="8" autocomplete="new-password" />
+        <span class="field-hint">At least 8 characters</span>
+      </label>
+      <label>Department
+        <select name="department" required>
+          <option value="" disabled selected>Choose your department</option>
+          <option value="content">Content</option>
+          <option value="marketing_sales">Marketing &amp; Sales</option>
+          <option value="rnd">R&amp;D</option>
+          <option value="admin">Admin</option>
+        </select>
+      </label>
+      <p class="form-error" id="register-error"></p>
+      <button type="submit" class="btn-primary">Create account</button>
+    </form>
+  </div>
+</div>
+
+<!-- APP SHELL -->
+<div id="app-shell" class="app-shell" hidden>
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <span class="auth-brand-mark">◈</span>
+      <span class="auth-brand-name">Signal</span>
+    </div>
+    <nav class="sidebar-nav">
+      <button class="nav-item active" data-view="board">Release board</button>
+      <button class="nav-item" data-view="calendar">Calendar</button>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="me">
+        <div class="me-name" id="me-name">—</div>
+        <div class="me-dept" id="me-dept">—</div>
+      </div>
+      <button id="logout-btn" class="btn-ghost">Sign out</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <h1 id="view-title">Release board</h1>
+      <div class="topbar-actions">
+        <div class="notif-wrap">
+          <button id="notif-bell" class="icon-btn" aria-label="Notifications">
+            🔔<span id="notif-badge" class="badge" hidden>0</span>
+          </button>
+          <div id="notif-panel" class="notif-panel" hidden>
+            <div class="notif-panel-head">
+              <span>Notifications</span>
+              <button id="notif-mark-read" class="link-btn">Mark all read</button>
+            </div>
+            <div id="notif-list" class="notif-list"></div>
+          </div>
+        </div>
+        <button id="new-title-btn" class="btn-primary">+ New title</button>
+      </div>
+    </header>
+
+    <section id="board-view" class="view">
+      <div id="titles-list" class="titles-list"></div>
+    </section>
+
+    <section id="calendar-view" class="view" hidden>
+      <div id="calendar-list" class="calendar-list"></div>
+    </section>
+  </main>
+</div>
+
+<!-- NEW / EDIT TITLE MODAL -->
+<div id="title-modal" class="modal-overlay" hidden>
+  <div class="modal">
+    <div class="modal-head">
+      <h2 id="modal-heading">New title</h2>
+      <button id="modal-close" class="icon-btn" aria-label="Close">✕</button>
+    </div>
+    <form id="title-form">
+      <input type="hidden" name="id" />
+      <label>Title name
+        <input type="text" name="name" required />
+      </label>
+      <label>Description
+        <textarea name="description" rows="2"></textarea>
+      </label>
+      <div class="form-row">
+        <label>Genre
+          <input type="text" name="genre" placeholder="e.g. Thriller" />
+        </label>
+        <label>Target audience
+          <input type="text" name="target_audience" placeholder="e.g. 18-34" />
+        </label>
+      </div>
+      <label>Target release date
+        <input type="date" name="target_release_date" />
+      </label>
+      <p class="form-error" id="title-form-error"></p>
+      <div class="modal-actions">
+        <button type="submit" class="btn-primary">Save title</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- TITLE DETAIL / STAGE DRAWER -->
+<div id="detail-modal" class="modal-overlay" hidden>
+  <div class="modal modal-wide">
+    <div class="modal-head">
+      <h2 id="detail-heading">Title</h2>
+      <button id="detail-close" class="icon-btn" aria-label="Close">✕</button>
+    </div>
+    <div id="detail-body"></div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
