@@ -1,0 +1,16 @@
+{
+  "name": "signal-ott-bridge",
+  "main": "src/index.js",
+  "compatibility_date": "2024-09-23",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "signal-db",
+      "database_id": "REPLACE_WITH_YOUR_DATABASE_ID"
+    }
+  ]
+}
