@@ -10,7 +10,7 @@
     {
       "binding": "DB",
       "database_name": "signal-db",
-      "database_id": "REPLACE_WITH_YOUR_DATABASE_ID"
+      "database_id": "b9c39b8d-d53d-4236-99a5-16d3a5a0eee2"
     }
   ]
 }
